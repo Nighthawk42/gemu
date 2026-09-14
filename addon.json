@@ -1,5 +1,6 @@
 {
     "title": "GEMU - Consoles & Handhelds",
+    "description": "Play SNES, NES, Genesis, GBA, GB and GBC games in Garry's Mod on console + CRT stations and handheld SWEPs, with Player 2, save slots and spectator screens.\n\nServer owners: this addon has no default game host. Host the GEMU web frontend with ROMs you are entitled to use, then set emu_url in garrysmod/cfg/gemu.cfg. Optional LiveKit spectator streaming is documented in the repository.\n\nOptional controller support (XInput/DirectInput) is a separate client DLL on GitHub Releases: https://github.com/Nighthawk42/gemu/releases\n\nSource, setup and issues: https://github.com/Nighthawk42/gemu\n\nCredits: console and handheld models by unconid, CRT model by ivip, emulation cores from Emulatrix (MIT).",
     "type": "tool",
     "tags": [
         "fun",
