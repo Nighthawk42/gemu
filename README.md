@@ -2,6 +2,12 @@
 
 Retro consoles and handhelds for Garry's Mod with one Emulatrix WebUI. SNES, NES and Genesis use console + CRT stations; GBA, GB and GBC use handheld SWEPs. Volume, input, fullscreen, saves, sessions and spectator screens share the same implementation.
 
+## Get GEMU
+
+- **Addon:** [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3801421244)
+- **Optional controller DLL:** [GitHub Releases](https://github.com/Nighthawk42/gemu/releases). The Workshop does not allow binary modules; each player copies `gmcl_gemu_input_win64.dll` into `garrysmod/lua/bin/` on the x86-64 branch.
+- **Server owners:** the addon has no default game host. Host the web frontend and set `emu_url` in `garrysmod/cfg/gemu.cfg` (see [Install and host](#install-and-host)).
+
 ## Folder layout
 
 ```text
