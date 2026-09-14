@@ -1,0 +1,41 @@
+[h1]GEMU - Consoles & Handhelds[/h1]
+Play SNES, NES, Sega Genesis, Game Boy Advance, Game Boy and Game Boy Color games inside Garry's Mod: physical consoles on CRT TVs and handhelds you hold in your hands.
+
+[h2]Features[/h2]
+[list]
+[*]SNES, NES and Genesis console + CRT stations; GBA, GB and GBC handheld weapons
+[*]Games keep running when you step away; only you pause them ([b]P[/b])
+[*]Player 2 on SNES, NES and Genesis (hold [b]Shift[/b] and press [b]E[/b] on an occupied console)
+[*]Save slots, autosave, save export/import
+[*]Nearby players watch the game on the TV, with sound (optional LiveKit video streaming, built-in fallback)
+[*]Remappable keyboard controls; optional controller support (see below)
+[/list]
+
+[h2]Controls[/h2]
+[list]
+[*][b]E[/b] on a console or TV: play / leave the controls (the game keeps running)
+[*][b]P[/b]: pause or resume
+[*][b]Shift+E[/b]: menu, [b]Alt+E[/b]: eject cartridge
+[*]Arrows move, [b]Z/X[/b] = B/A, [b]C/V[/b] = Y/X, [b]Q/F[/b] = L/R, [b]Enter[/b] = Start, [b]Backspace[/b] = Select
+[*][b]F1[/b]: controls, [b]F5/F8[/b]: save/load state, [b]F11[/b]: fullscreen, [b]-/=[/b]: volume, [b]M[/b]: mute
+[*]Handhelds: left click plays, right click zooms, [b]R[/b] opens the menu
+[/list]
+
+[h2]Server owners: required setup[/h2]
+This addon includes [b]no games and no default game host[/b]. Host the GEMU web frontend with ROMs you are entitled to use, then add to [i]garrysmod/cfg/gemu.cfg[/i]:
+[code]emu_url "https://your-host.example/gemu/"[/code]
+Players who join your server get the setting automatically. Full setup, including optional streaming: [url=https://github.com/Nighthawk42/gemu]GitHub repository[/url]
+
+[h2]Optional controller support[/h2]
+XInput (Xbox-style) and DirectInput (generic USB) controllers need a small client module that the Workshop cannot distribute. Download [i]gmcl_gemu_input_win64.dll[/i] from [url=https://github.com/Nighthawk42/gemu/releases]GitHub Releases[/url] and put it in [i]garrysmod/lua/bin/[/i] (x86-64 branch), then restart the game.
+
+[h2]Test build[/h2]
+This is an early test release. Please report problems on [url=https://github.com/Nighthawk42/gemu/issues]GitHub Issues[/url] with your console output ([i]emu_stream_status[/i], [i]emu_rtc_status[/i]).
+
+[h2]Credits[/h2]
+[list]
+[*]Console, cartridge and handheld models: unconid
+[*]CRT television model: ivip
+[*]Emulation cores: [url=https://github.com/lrusso/Emulatrix]Emulatrix[/url] (MIT)
+[*]Streaming: LiveKit (Apache-2.0)
+[/list]
