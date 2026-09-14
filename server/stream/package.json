@@ -1,0 +1,8 @@
+{
+  "name": "gemu-stream",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {"start": "node broker.mjs", "test": "node --test test.mjs", "smoke": "node smoke.cjs"},
+  "dependencies": {"livekit-server-sdk": "2.19.0", "livekit-client": "2.22.3"}
+}

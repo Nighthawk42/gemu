@@ -1,0 +1,5 @@
+"VertexLitGeneric"
+{
+    "$basetexture" "gemu/blank_label"
+    "$model" "1"
+}

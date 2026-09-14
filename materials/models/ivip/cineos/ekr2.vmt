@@ -1,0 +1,16 @@
+"VertexlitGeneric"
+{
+	"$baseTexture" "models/ivip/cineos/snow"
+	"$selfillummask" "models/ivip/cineos/255"
+	"$selfillum" 1
+	"$surfaceprop" metal
+	"Proxies"
+	{
+		"AnimatedTexture"
+		{
+			"animatedTextureVar" "$basetexture"
+			"animatedTextureFrameNumVar" "$frame"
+			"animatedTextureFrameRate" "30"
+		}
+	}
+}

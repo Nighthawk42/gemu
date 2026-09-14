@@ -1,0 +1,60 @@
+# Game ROMs & saves (must stay local, never committed)
+/roms/
+/web/roms/
+*.[gG][bB][aA]
+*.[gG][bB][cC]
+*.[gG][bB]
+*.[sS][mM][cC]
+*.[sS][fF][cC]
+*.[nN][eE][sS]
+*.[sS][mM][dD]
+*.[bB][iI][nN]
+*.32x
+*.zip
+*.7z
+*.rar
+*.sav
+*.srm
+*.state
+*.ss[0-9]*
+*.bios
+
+# Private notes, LLM handoff, builds, and scratch tooling
+[pP][aA][sS][sS][dD][oO][wW][nN].[mM][dD]
+/.work/
+/scratch/
+/dist/
+node_modules/
+
+# Python cache & virtual environments
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+venv/
+
+# Logs & temp files
+*.log
+*.tmp
+*.bak
+agent_chat.md
+agents_chat.md
+
+# Environment variables & secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Editor / IDE metadata
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS artifacts
+Thumbs.db
+[dD]esktop.ini
+.DS_Store

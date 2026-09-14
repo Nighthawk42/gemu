@@ -1,0 +1,6 @@
+node_modules
+.env
+servers.json
+livekit.yaml
+*.md
+test.mjs

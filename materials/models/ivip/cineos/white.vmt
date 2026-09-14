@@ -1,0 +1,18 @@
+"VertexlitGeneric"
+{
+	"$basetexture" "models/ivip/cineos/white"
+	"$bumpmap" "models/ivip/cineos/metaln"
+$bumpscale 0.1
+$surfaceprop metal
+
+	$phong 1
+	$phongexponent 160
+	$phongboost 64
+	$phongfresnelranges "[0 0.5 1]"
+
+	$rimlight 1
+	$rimlightexponent 1
+	$rimlightboost	2
+}
+
+

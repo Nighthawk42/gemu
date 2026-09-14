@@ -1,0 +1,20 @@
+port: 7880
+rtc:
+  tcp_port: 7881
+  udp_port: 7882
+  use_external_ip: true
+room:
+  empty_timeout: 30
+  departure_timeout: 10
+  max_participants: 33
+# Optional TURN relay, used with compose.turn.yaml. TURN relays only to this
+# LiveKit server. The domain must match the mounted certificate.
+# turn:
+#   enabled: true
+#   domain: YOUR_HOST
+#   udp_port: 3478
+#   tls_port: 5349
+#   cert_file: /etc/livekit-turn/YOUR_HOST.crt
+#   key_file: /etc/livekit-turn/YOUR_HOST.key
+keys:
+  gemu_dev: REPLACE_WITH_RANDOM_SECRET

@@ -1,0 +1,12 @@
+# Optional TURN relay for viewers whose networks block the direct media ports.
+# Enable the turn: block in livekit.yaml, set TURN_CERT_DIR in .env to a directory
+# holding the certificate and key for the TURN domain, then run:
+#   docker compose -f compose.yaml -f compose.turn.yaml up -d
+# LiveKit reads the certificate at startup; restart it after the proxy renews it.
+services:
+  livekit:
+    volumes:
+      - ${TURN_CERT_DIR}:/etc/livekit-turn:ro
+    ports:
+      - "3478:3478/udp"
+      - "5349:5349/tcp"

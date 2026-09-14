@@ -1,0 +1,18 @@
+[
+  ["snes", "Super Mario World", "super_mario_world.smc", "Nintendo/Super Nintendo/Roms/Super Mario World.smc"],
+  ["snes", "Super Mario All-Stars", "super_mario_all_stars.smc", "Nintendo/Super Nintendo/Roms/Super Mario All-Stars.smc"],
+  ["snes", "Jurassic Park", "jurassic_park.smc", "Nintendo/Super Nintendo/Roms/Jurassic Park.smc"],
+  ["snes", "Super Metroid", "super_metroid.smc", "Nintendo/Super Nintendo/Roms/Super Metroid.smc"],
+  ["nes", "Super Mario Bros. / Duck Hunt", "super_mario_bros_duck_hunt.nes", "Nintendo/NES/roms/Super Mario Bros - Duck Hunt (U).nes"],
+  ["nes", "Super Mario Bros. 2", "super_mario_bros_2.nes", "Nintendo/NES/roms/Super Mario Bros 2 (U) (PRG 1).nes"],
+  ["nes", "Super Mario Bros. 3", "super_mario_bros_3.nes", "Nintendo/NES/roms/Super Mario Bros 3 (U) (PRG 1).nes"],
+  ["nes", "The Legend of Zelda", "the_legend_of_zelda.nes", "Nintendo/NES/roms/Legend of Zelda, The (U) (PRG 1).nes"],
+  ["genesis", "Sonic the Hedgehog", "sonic_the_hedgehog.bin", "SEGA/Genesis/Roms/Sonic the Hedgehog (USA, Europe).bin"],
+  ["genesis", "Sonic the Hedgehog 2", "sonic_the_hedgehog_2.bin", "SEGA/Genesis/Roms/Sonic the Hedgehog 2 (World).bin"],
+  ["genesis", "Sonic the Hedgehog 3", "sonic_the_hedgehog_3.bin", "SEGA/Genesis/Roms/Sonic the Hedgehog 3 (USA).bin"],
+  ["genesis", "Sonic & Knuckles", "sonic_and_knuckles.bin", "SEGA/Genesis/Roms/Sonic & Knuckles (World).bin"],
+  ["gba", "Pokemon FireRed", "pokemon_firered.gba", "Nintendo/GBA/Roms/Pokemon - FireRed (U).gba"],
+  ["gba", "Pokemon Sapphire", "pokemon_sapphire.gba", "Nintendo/GBA/Roms/Pokemon - Sapphire (U).gba"],
+  ["gbc", "Pokemon Silver", "pokemon_silver.gbc", "Nintendo/GBA/Roms/Pokemon - Silver (U).gbc"],
+  ["gb", "Pokemon Blue", "pokemon_blue.gb", "Nintendo/GBA/Roms/Pokemon - Blue (U).gb"]
+]

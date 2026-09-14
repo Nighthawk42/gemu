@@ -1,0 +1,62 @@
+// Focused storage/recovery tests; no emulator cores or browser smoke runs.
+const fs=require('fs'),vm=require('vm'),assert=require('assert');
+const files=new Map(),messages=[];
+let full=false, failBackup=false, state=btoa('first state'), exported, loads=0;
+const window={gmod:{exportSave:data=>exported=data}};
+const localStorage={getItem:k=>files.get(k)||null,setItem:(k,v)=>{
+  if(full || (failBackup && k.endsWith('_previous'))) throw new Error('Storage full');
+  files.set(k,v);
+}};
+const ctx=vm.createContext({window,localStorage,setTimeout,clearTimeout,btoa,atob,console});
+for(const file of ['save-storage.js','saves.js']) vm.runInContext(fs.readFileSync('web/'+file,'utf8'),ctx);
+const emu={isReady:true,saveState:()=>state,loadState:s=>{loads++;state=s;return s!==btoa('rejected');}};
+const make=()=>{const s=window.createEmuSaves(emu,'gba','test.gba',m=>messages.push(m));s.setROMIdentity(new Uint8Array([1,2,3]));return s;};
+const key='gemu_save_v1_gba_test.gba_';
+let count=0;
+function check(v,m){assert(v,m);count++;}
+(async()=>{
+  const saves=make();
+  check(await saves.save('1'),'first slot save');
+  const first=files.get(key+'1');
+  state=btoa('second state');check(await saves.save('1'),'slot replacement');
+  check(files.get(key+'1_previous')===first,'previous snapshot retained');
+  full=true;state=btoa('third state');
+  check(!await saves.save('1'),'quota failure reported');
+  check(JSON.parse(files.get(key+'1')).state===btoa('second state'),'quota failure preserves primary');
+  check(await saves.exportFile() && JSON.parse(exported).state===state,'export works when storage full');
+  full=false;
+  files.set(key+'1','broken json');
+  check(await saves.load('1') && state===btoa('first state'),'recover malformed primary from previous');
+  const corrupt=JSON.parse(first);corrupt.state=btoa('modified data');files.set(key+'1',JSON.stringify(corrupt));
+  check(await saves.load('1') && state===btoa('first state'),'checksum failure recovers previous');
+  const n=loads;
+  check(!await saves.importFile(JSON.stringify({...JSON.parse(first),rom:'wrong.gba'})) && loads===n,'wrong game rejected before core');
+  check(!await saves.importFile(JSON.stringify({...JSON.parse(first),build:'different'})) && loads===n,'wrong core build rejected');
+  check(!await saves.importFile(JSON.stringify({...JSON.parse(first),romIdentity:'changed'})) && loads===n,'different ROM contents rejected');
+  check(!await saves.importFile(JSON.stringify({...JSON.parse(first),state:'a==='})) && loads===n,'noncanonical base64 rejected');
+  state=btoa('running game');full=true;
+  check(!await saves.importFile(first) && state===btoa('running game'),'failed import persistence rolls back gameplay');
+  full=false;check(await saves.importFile(first),'valid import persisted');
+  const rejected={...JSON.parse(first),state:btoa('rejected')};rejected.checksum=window.EmuSaveCRC(rejected.state);
+  state=btoa('running game');
+  check(!await saves.importFile(JSON.stringify(rejected)) && state===btoa('running game'),'rejected core load rolls back');
+  files.set(key+'auto','bad');files.set(key+'auto_previous','also bad');
+  check(!await saves.load('auto',true),'unrecoverable auto reports failure');
+  check(!await saves.save('auto',true) && files.get(key+'auto')==='bad','failed recovery is not overwritten by autosave');
+  check(await saves.save('2') && await saves.save('auto',true),'explicit manual save permits new autosaves');
+  const old={version:1,system:'gba',rom:'test.gba',state:btoa('legacy')};
+  check(await saves.importFile(JSON.stringify(old)),'legacy format can migrate');
+  check(JSON.parse(files.get(key+'1')).version===2,'legacy save upgraded on write');
+  failBackup=true;state=btoa('new state');
+  check(await saves.save('1') && messages.at(-1).includes('backup'),'backup quota failure is disclosed');
+  failBackup=false;
+  // Native adapter waits for acknowledgement; it does not report success early.
+  window.gmod.writeSaveSlot=(id,slot,data)=>setTimeout(()=>window.EmuSaveIO.complete(id,true,''),5);
+  window.gmod.readSaveSlot=(id,slot)=>setTimeout(()=>window.EmuSaveIO.complete(id,true,JSON.stringify({current:first})),5);
+  const native=make();
+  check(await native.save('3'),'native acknowledgement completes save');
+  check(await native.load('3') && state===btoa('first state'),'native read restores record');
+  window.gmod.writeSaveSlot=(id)=>setTimeout(()=>window.EmuSaveIO.complete(id,false,'Disk full'),0);
+  check(!await native.save('3'),'native disk failure propagates');
+  console.log('All '+count+' save handling checks PASSED!');
+})().catch(e=>{console.error(e);process.exitCode=1;});

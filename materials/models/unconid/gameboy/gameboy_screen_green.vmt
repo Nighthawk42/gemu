@@ -1,0 +1,8 @@
+"vertexlitgeneric"
+{
+	"$basetexture"	 "models\unconid\gameboy\gameboy_screen_green"
+	"$bumpmap"	 "models\unconid\gameboy\sst_normal"
+
+	$AmbientOcclusion "0"
+
+}

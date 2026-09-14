@@ -1,0 +1,8 @@
+"vertexlitgeneric"
+{
+	"$basetexture"	 "models\unconid\gameboy\gameboy_color_screen_green"
+
+	$AmbientOcclusion "0"
+
+
+}
